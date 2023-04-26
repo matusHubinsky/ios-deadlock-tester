@@ -65,4 +65,4 @@ for _ in $(seq 20); do
 done
 
 echo "]"
-echo "Sucess! No deadlock detected!"
+echo "Success! No deadlock detected!"
