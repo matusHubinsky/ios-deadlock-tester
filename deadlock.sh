@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 NZ=$1
 NU=$2
