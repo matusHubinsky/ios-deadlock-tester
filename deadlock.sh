@@ -7,12 +7,12 @@ TU=$4
 T=$5
 
 if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; then
-    echo "usage: ./deadlock.sh NZ NU TZ TU T"
+    echo "Usage: ./deadlock.sh NZ NU TZ TU T"
     echo "  NZ: Number of customers"
     echo "  NU: Number of officials"
-    echo "  TZ: Maximum time in miliseconds, that customers waits after creation and before he enters post offic (eventually leaves, when post office is closed) 0 <= TZ <= 10000 "
-    echo "  TU: Maximum time of official break in miliseconds 0 <= TU <= 100"
-    echo "  F: Maximum time in miliseconds in which port is open for new comers 0 <= F <= 10000"
+    echo "  TZ: Maximum time in miliseconds, that customers waits after creation and before they enters the post office (eventually leaves, when post office is closed)"
+    echo "  TU: Maximum time of official break in miliseconds"
+    echo "  F:  Maximum time in miliseconds in which post office is open for new customers"
     exit 1
 fi
 
@@ -34,8 +34,10 @@ stop_noise() {
 
 find /dev/shm -user "$(whoami)" -delete
 
-echo "test 1: (no noise)"
+echo "Test 1: (no noise)"
 echo -n "["
+start=$(date +%s%3N)
+
 for _ in $(seq 20); do
     echo -n "#"
     ./proj2 "$NZ" "$NU" "$TZ" "$TU" "$T"
@@ -47,10 +49,12 @@ for _ in $(seq 20); do
     ./proj2 "$NZ" "$NU" "$TU" "$TU" "$T"
 done
 
-echo "]"
-echo "test 2: (random noise)"
+
+echo "] finished in: $(( $(date +%s%3N) - start )) ms"
+echo "Test 2: (random noise)"
 echo -n "["
 
+start=$(date +%s%3N)
 for _ in $(seq 20); do
     start_noise $((RANDOM % 23))
     echo -n "#"
@@ -64,5 +68,5 @@ for _ in $(seq 20); do
     stop_noise
 done
 
-echo "]"
-echo "Success! No deadlock detected!"
+echo "] finished in: $(( $(date +%s%3N) - start )) ms"
+echo "You are awesome! No deadlock detected!"
