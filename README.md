@@ -8,6 +8,16 @@ A simple bash script that tries to find deadlock by running **proj2** executable
 2. Run in a directory with compiled project executable named **proj2**: \
 `./deadlock.sh 3 2 100 100 100`
 
+3. Example (in your Makefile):
+```
+deadlock: all
+    @./deadlock.sh 5 3 0 0 0
+    @./deadlock.sh 1 3 10 10 0
+    @./deadlock.sh 3 2 100 100 100
+    @./deadlock.sh 33 22 100 100 1000
+    @./deadlock.sh 100 100 100 100 1000
+```
+
 ## Output
 when no deadlock is detected:
 ```
@@ -24,4 +34,14 @@ test 1: (no noise)
 [################################################################################]
 test 2: (random noise)
 [#########
+```
+
+wrong input:
+```
+Usage: ./deadlock.sh NZ NU TZ TU T
+  NZ: Number of customers
+  NU: Number of officials
+  TZ: Maximum time in miliseconds, that customers waits after creation and before they enters the post office (eventually leaves, when post office is closed)
+  TU: Maximum time of official break in miliseconds
+  F:  Maximum time in miliseconds in which post office is open for new customers
 ```
