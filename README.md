@@ -22,6 +22,19 @@ deadlock: all
     @./deadlock.sh 100 100 100 100 1000
 ```
 
+4. Automatic deadlock detection (argument -a):
+```
+$ ./deadlock.sh 100 100 100 100 0 -a
+Info: deadlock detection enabled
+Test 1: (no noise)
+[################################################################################] finished in: 8992 ms
+Test 2: (random noise)
+[############
+Deadlock detected! Output file was not changed in 1 second. Killing program.
+Terminated
+[1]    533047 terminated  ./deadlock.sh 100 100 100 100 0 -a
+```
+
 ## Output
 when no deadlock is detected:
 ```
