@@ -18,13 +18,13 @@ else
 fi
 
 if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; then
-    echo "Usage: ./deadlock.sh NZ NU TZ TU T -a"
+    echo "Usage: ./deadlock.sh NZ NU TZ TU T (-a)"
     echo "  NZ: Number of customers"
     echo "  NU: Number of officials"
     echo "  TZ: Maximum time in miliseconds, that customers waits after creation and before they"
     echo "      enters the post office (eventually leaves, when post office is closed)"
     echo "  TU: Maximum time of official break in miliseconds"
-    echo "  F:  Maximum time in miliseconds in which post office is open for new customers"
+    echo "   F: Maximum time in miliseconds in which post office is open for new customers"
     echo "  -a: Enable deadlock detection (optional)"
     exit 1
 fi

@@ -55,11 +55,12 @@ test 2: (random noise)
 
 wrong input:
 ```
-Usage: ./deadlock.sh NZ NU TZ TU T
+Usage: ./deadlock.sh NZ NU TZ TU T (-a)
   NZ: Number of customers
   NU: Number of officials
   TZ: Maximum time in miliseconds, that customers waits after creation and before they
       enters the post office (eventually leaves, when post office is closed)
   TU: Maximum time of official break in miliseconds
   F:  Maximum time in miliseconds in which post office is open for new customers
+ -a: Enable deadlock detection (optional)
 ```
