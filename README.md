@@ -1,5 +1,5 @@
 # IOS project 2. Deadlock tester
-A simple bash script that tries to find deadlock by running **proj2** executable 160 times. First suite of tests are simple, with no noise functions runnig. Second suite of tests run noise functions and increas the chance of deadlock. After finding a deadlock, script will stop and it needs to be killed by pressing **ctrl-c** or `killall deadlock.sh` command.
+A simple bash script that tries to find deadlock by running **proj2** executable 160 times. First suite of tests are simple, with no noise functions runnig. Second suite of tests run noise functions and increas the chance of deadlock. After finding a deadlock, script will stop and it needs to be killed by pressing **ctrl-c** or **killall deadlock.sh** command.
 
 ## Usage
 1. Make script executable by:
@@ -27,7 +27,7 @@ deadlock: all
 $ ./deadlock.sh 100 100 100 100 0 -a
 Info: deadlock detection enabled
 Test 1: (no noise)
-[################################################################################] finished in: 8992 ms
+[################################################################################] 8992 ms
 Test 2: (random noise)
 [############
 Deadlock detected! Output file was not changed in 1 second. Killing program.
@@ -39,16 +39,16 @@ Terminated
 when no deadlock is detected:
 ```
 Test 1: (no noise)
-[################################################################################] finished in: 245 ms
+[################################################################################] 210 ms
 Test 2: (random noise)
-[################################################################################] finished in: 2350 ms
+[################################################################################] 1426 ms
 You are awesome! No deadlock detected!
 ```
 
 when deadlock ocurs:
 ```
 test 1: (no noise)
-[################################################################################] finished in: 818 ms
+[################################################################################] 818 ms
 test 2: (random noise)
 [#########
 ```

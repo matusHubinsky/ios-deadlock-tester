@@ -87,7 +87,7 @@ for _ in $(seq 20); do
 done
 
 
-echo "] finished in: $(( $(date +%s%3N) - start )) ms"
+echo "] $(( $(date +%s%3N) - start )) ms"
 echo "Test 2: (random noise)"
 echo -n "["
 start=$(date +%s%3N)
@@ -106,7 +106,7 @@ for _ in $(seq 20); do
     stop_noise
 done
 
-echo "] finished in: $(( $(date +%s%3N) - start )) ms"
+echo "] $(( $(date +%s%3N) - start )) ms"
 echo "You are awesome! No deadlock detected!"
 
 exit 0
