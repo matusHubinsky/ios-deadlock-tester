@@ -10,7 +10,7 @@ TZ=$3
 TU=$4
 T=$5
 
-if [[ $6 == "-a" ]]; then
+if [[ $6 == "-d" ]]; then
     echo "Info: automatic deadlock detection disabled"
     auto=0
 else
@@ -25,7 +25,7 @@ if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; 
     echo "      enters the post office (eventually leaves, when post office is closed)"
     echo "  TU: Maximum time of official break in miliseconds"
     echo "   F: Maximum time in miliseconds in which post office is open for new customers"
-    echo "  -a: Disable automatic deadlock detection (optional)"
+    echo "  -d: Disable automatic deadlock detection (optional)"
     exit 1
 fi
 
@@ -69,7 +69,6 @@ check() {
 
 find /dev/shm -user "$(whoami)" -delete
 
-
 echo "Test 1: (no noise)"
 echo -n "["
 start=$(date +%s%3N)
@@ -109,4 +108,5 @@ done
 echo "] $(( $(date +%s%3N) - start )) ms"
 echo "You are awesome! No deadlock detected!"
 
+rm proj2.tmp
 exit 0
