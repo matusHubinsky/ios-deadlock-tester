@@ -17,6 +17,7 @@ else
     auto=1 
 fi
 
+
 if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; then
     echo "Usage: ./deadlock.sh NZ NU TZ TU T (-a)"
     echo "  NZ: Number of customers"
@@ -27,6 +28,26 @@ if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; 
     echo "   F: Maximum time in miliseconds in which post office is open for new customers"
     echo "  -d: Disable automatic deadlock detection (optional)"
     exit 1
+fi
+
+if [ "$NZ" -lt 1 ] || [ "$NU" -lt -1 ]; then
+    echo "Error: Wrong number of people!" 2>&1
+    exit 0
+fi
+
+if [ "$TZ" -gt 10000 ] || [ "$TZ" -lt 0 ]; then
+    echo "Wrong customer time!" 2>&1
+    exit 0
+fi
+
+if [ "$TU" -gt 100 ] || [ "$TU" -lt 0 ]; then
+    echo "Wrong official time!" 2>&1
+    exit 0
+fi
+
+if [ "$T" -gt 1000 ] || [ "$T" -lt 0 ]; then
+    echo "Wrong office time!" 2>&1
+    exit 0
 fi
 
 noise() {
