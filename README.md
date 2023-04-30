@@ -1,5 +1,5 @@
 # IOS project 2. Deadlock tester
-A simple bash script that tries to find deadlock by running **proj2** executable 160 times. First suite of tests are simple, with no noise functions runnig. Second suite of tests run noise functions and increas the chance of deadlock. After finding a deadlock, script will stop and it needs to be killed by pressing **ctrl-c** or **killall deadlock.sh** command.
+A simple bash script that tries to find deadlock by running **proj2** executable 160 times. First suite of tests are simple, with no noise functions runnig. Second suite of tests run noise functions and increas the chance of deadlock. After finding a deadlock, script will stop and kill all **proj2** processes. When automatic deadlock detection is disables, it needs to be killed by pressing **ctrl-c** or **killall deadlock.sh** command.
 
 ## Usage
 1. Make script executable by:
@@ -22,17 +22,14 @@ deadlock: all
     @./deadlock.sh 100 100 100 100 1000
 ```
 
-4. Automatic deadlock detection (argument -a):
+4. Disable automatic deadlock detection (optional argument -d):
 ```
-$ ./deadlock.sh 100 100 100 100 0 -a
-Info: deadlock detection enabled
+$ ./deadlock.sh 100 100 100 100 0 -d
+Info: automatic deadlock detection disabled
 Test 1: (no noise)
-[################################################################################] 8992 ms
+[################################################################################] 9189 ms
 Test 2: (random noise)
-[############
-Deadlock detected! Output file was not changed in 1 second. Killing program.
-Terminated
-[1]    533047 terminated  ./deadlock.sh 100 100 100 100 0 -a
+[############################
 ```
 
 ## Output
@@ -47,20 +44,29 @@ You are awesome! No deadlock detected!
 
 when deadlock ocurs:
 ```
-test 1: (no noise)
-[################################################################################] 818 ms
-test 2: (random noise)
-[#########
+Test 1: (no noise)
+[################################################################################] 9285 ms
+Test 2: (random noise)
+[#############
+Deadlock detected! Output file was not changed in 1 second. Killing program.
+Terminated
+[1]    253046 terminated  ./deadlock.sh 100 100 100 100 0
 ```
 
 wrong input:
 ```
-Usage: ./deadlock.sh NZ NU TZ TU T (-a)
+Usage: ./deadlock.sh NZ NU TZ TU T (-d)
   NZ: Number of customers
   NU: Number of officials
   TZ: Maximum time in miliseconds, that customers waits after creation and before they
       enters the post office (eventually leaves, when post office is closed)
   TU: Maximum time of official break in miliseconds
-  F:  Maximum time in miliseconds in which post office is open for new customers
- -a: Enable deadlock detection (optional)
+   F: Maximum time in miliseconds in which post office is open for new customers
+  -d: Disable automatic deadlock detection (optional)
 ```
+
+
+
+
+
+
