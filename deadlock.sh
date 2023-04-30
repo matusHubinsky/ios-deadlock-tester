@@ -11,10 +11,10 @@ TU=$4
 T=$5
 
 if [[ $6 == "-a" ]]; then
-    echo "Info: deadlock detection enabled"
-    auto=1
+    echo "Info: automatic deadlock detection disabled"
+    auto=0
 else
-    auto=0 
+    auto=1 
 fi
 
 if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; then
@@ -25,7 +25,7 @@ if [ -z "$NZ" ] || [ -z "$NU" ] || [ -z "$TZ" ] || [ -z "$TU" ] || [ -z "$T" ]; 
     echo "      enters the post office (eventually leaves, when post office is closed)"
     echo "  TU: Maximum time of official break in miliseconds"
     echo "   F: Maximum time in miliseconds in which post office is open for new customers"
-    echo "  -a: Enable deadlock detection (optional)"
+    echo "  -a: Disable automatic deadlock detection (optional)"
     exit 1
 fi
 
